@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
     private float speed = 8f;
-    private float jumpingPower = 800f;
+    private float jumpingPower = 1000f;
     private bool isFacingRight = true;
     private bool canJump = true;
 
@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(JumpCooldown());
             rb.AddForce(new Vector2(rb.velocity.x, jumpingPower));
+            animator.SetBool("isJumping", !canJump);
         }
 
         Flip();
@@ -39,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("yVelocity", rb.velocity.y);
     }
 
     private void Flip()
@@ -55,7 +57,9 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator JumpCooldown()
     {
         canJump = false;
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.7f);
         canJump = true;
+
+        animator.SetBool("isJumping", !canJump);
     }
 }
