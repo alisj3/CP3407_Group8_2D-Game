@@ -59,7 +59,7 @@ public class BanditAI : MonoBehaviour {
             // Attack if within range
             if (Vector2.Distance(transform.position, playerTransform.position) <= m_attackRange) {
                 Debug.Log("Player within attack range, attacking.");
-                m_animator.SetTrigger("LightBandit_Attack");
+                m_animator.SetTrigger("Attack");
             }
 
             // Run animation
