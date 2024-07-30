@@ -3,10 +3,9 @@
 public class BanditAI : MonoBehaviour {
 
     [SerializeField] float m_speed = 4.0f;
-    [SerializeField] float m_attackRange = 3f;
-    [SerializeField] float m_detectionRange = 10.0f;
-    [SerializeField] float m_health = 100.0f; // Health of the bandit
-    [SerializeField] float m_gravityScale = 1.0f; // Gravity scale for controlling jump height
+    [SerializeField] float m_jumpForce = 7.5f;
+    [SerializeField] float m_attackRange = 1.5f; // Range within which the AI will attack the player
+    [SerializeField] float m_detectionRange = 10.0f; // Range within which the AI can detect the player
 
     private Animator m_animator;
     private Rigidbody2D m_body2d;
@@ -14,14 +13,14 @@ public class BanditAI : MonoBehaviour {
     private bool m_grounded = false;
     private bool m_isDead = false;
 
-    private Transform playerTransform;
+    private Transform playerTransform; // Reference to the player's transform
 
+    // Use this for initialization
     void Start () {
         m_animator = GetComponent<Animator>();
         m_body2d = GetComponent<Rigidbody2D>();
-        m_body2d.gravityScale = m_gravityScale; // Set gravity scale
         m_groundSensor = transform.Find("GroundSensor").GetComponent<Sensor_Bandit>();
-        GameObject player = GameObject.Find("Takeshi_Player");
+        GameObject player = GameObject.Find("Takeshi_Player"); // Finding the player by name
         
         if (player != null) {
             playerTransform = player.transform;
@@ -30,15 +29,8 @@ public class BanditAI : MonoBehaviour {
         }
     }
     
+    // Update is called once per frame
     void Update () {
-        // Check if the bandit is dead
-        if (m_health <= 0 && !m_isDead) {
-            m_isDead = true;
-            m_animator.SetTrigger("HeavyBandit_Death");
-            m_body2d.velocity = Vector2.zero;
-            return;
-        }
-
         // Check if character just landed on the ground
         if (!m_grounded && m_groundSensor.State()) {
             m_grounded = true;
@@ -68,8 +60,6 @@ public class BanditAI : MonoBehaviour {
             if (Vector2.Distance(transform.position, playerTransform.position) <= m_attackRange) {
                 Debug.Log("Player within attack range, attacking.");
                 m_animator.SetTrigger("Attack");
-
-                m_animator.SetTrigger("HeavyBandit_Attack");
             }
 
             // Run animation
@@ -81,18 +71,5 @@ public class BanditAI : MonoBehaviour {
 
         // Set AirSpeed in animator
         m_animator.SetFloat("AirSpeed", m_body2d.velocity.y);
-    }
-
-    // Method to apply damage to the bandit
-    public void TakeDamage(float damage) {
-        m_health -= damage;
-        if (m_health > 0) {
-            m_animator.SetTrigger("HeavyBandit_Hurt");
-        }
-        if (m_health <= 0 && !m_isDead) {
-            m_isDead = true;
-            m_animator.SetTrigger("HeavyBandit_Death");
-            m_body2d.velocity = Vector2.zero;
-        }
     }
 }
