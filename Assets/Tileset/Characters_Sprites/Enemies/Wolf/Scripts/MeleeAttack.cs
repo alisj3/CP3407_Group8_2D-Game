@@ -21,7 +21,7 @@ public class MeleeAttack : MonoBehaviour
     private PlayerHealth playerHealth;
 
     private Transform playerTransform;
-    private Rigidbody2D m_body2d;
+    public Rigidbody2D m_body2d;
 
     private void Awake()
     {
@@ -49,7 +49,6 @@ public class MeleeAttack : MonoBehaviour
 
         if (playerTransform != null && Vector2.Distance(transform.position, playerTransform.position) <= m_detectionRange)
         {
-            Debug.Log("Player detected within range.");
             // Move towards the player
             Vector2 direction = (playerTransform.position - transform.position).normalized;
             m_body2d.velocity = new Vector2(direction.x * m_speed, m_body2d.velocity.y);
@@ -89,6 +88,8 @@ public class MeleeAttack : MonoBehaviour
 
         if (hit.collider != null)
           playerHealth = hit.transform.GetComponent<PlayerHealth>();
+
+        
 
         return hit.collider != null;
 

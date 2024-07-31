@@ -5,8 +5,14 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int health = 100;
+    [SerializeField] Animator DieAnimation;
 
     private int MAX_HEALTH = 100;
+
+    private void Awake()
+    {
+        DieAnimation = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         this.health -= amount;
+        DieAnimation.SetTrigger("hurt");
 
         if (health < 0)
         {
@@ -50,6 +57,17 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("You Died");
+        GetComponentInParent<MeleeAttack>().enabled = false;
+        GetComponentInParent<MeleeAttack>().m_body2d.constraints = RigidbodyConstraints2D.FreezePositionX;
+        DieAnimation.SetTrigger("die");
+
+        StartCoroutine(Delay());
+    }
+
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(2);
+
         Destroy(gameObject);
     }
 }
