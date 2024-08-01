@@ -14,11 +14,11 @@ public class CombatAttack : MonoBehaviour
     public Animator myAnim;
     public static CombatAttack instance;
 
+
     public bool attacking = false;
 
     private void Awake()
     {
-
         myAnim = GetComponentInChildren<Animator>();
         instance = this;
     }

@@ -8,10 +8,13 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Animator DieAnimation;
 
     private int MAX_HEALTH = 100;
+    public GameObject Blood;
+    private AudioSource audioSource;
 
     private void Awake()
     {
         DieAnimation = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -29,6 +32,8 @@ public class PlayerHealth : MonoBehaviour
 
         this.health -= amount;
         DieAnimation.SetTrigger("hurt");
+        Instantiate(Blood, transform.position, Quaternion.identity);
+        audioSource.Play();
 
         if (health < 0)
         {
