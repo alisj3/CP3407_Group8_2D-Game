@@ -61,7 +61,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("You Died");
         GetComponentInParent<MeleeAttack>().enabled = false;
         GetComponentInParent<MeleeAttack>().m_body2d.constraints = RigidbodyConstraints2D.FreezePositionX;
         DieAnimation.SetTrigger("die");

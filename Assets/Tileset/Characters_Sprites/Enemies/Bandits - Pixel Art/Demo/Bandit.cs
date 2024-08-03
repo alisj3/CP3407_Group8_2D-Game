@@ -56,12 +56,6 @@ public class BanditAI : MonoBehaviour {
             else if (direction.x < 0)
                 transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
-            // Attack if within range
-            if (Vector2.Distance(transform.position, playerTransform.position) <= m_attackRange) {
-                Debug.Log("Player within attack range, attacking.");
-                m_animator.SetTrigger("Attack");
-            }
-
             // Run animation
             m_animator.SetInteger("AnimState", 2);
         } else {
