@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2872597162233056147}
   - component: {fileID: 2164514136086885887}
   - component: {fileID: 5425804776234119323}
-  - component: {fileID: 1036550097034768852}
   - component: {fileID: 3883434143033789257}
   - component: {fileID: 3848085894835802660}
   - component: {fileID: 3045477046866841215}
@@ -172,7 +171,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07996559, y: -0.46570006}
+  m_Offset: {x: -0.41066647, y: -0.29759783}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -183,43 +182,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1881218, y: 1.2142857}
+  m_Size: {x: 1.8495235, y: 1.5284041}
   m_EdgeRadius: 0
---- !u!70 &1036550097034768852
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4469237898604623970}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.92144805, y: -0.01838639}
-  m_Size: {x: 0.56278986, y: 0.4689261}
-  m_Direction: 1
 --- !u!61 &3883434143033789257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -252,7 +216,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08373642, y: -0.4605012}
+  m_Offset: {x: -0.08054829, y: -1.0111325}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -263,7 +227,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1871948, y: 1.2211206}
+  m_Size: {x: 1.1850986, y: 0.10218918}
   m_EdgeRadius: 0
 --- !u!114 &3848085894835802660
 MonoBehaviour:
@@ -277,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875bfddadc9e38d41be13b4a78f77ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 6
+  health: 14
   DieAnimation: {fileID: 5444028089090861583}
   Blood: {fileID: 1183176227867747839, guid: 27017131dae3d2947b21648ae258a703, type: 3}
 --- !u!114 &3045477046866841215
@@ -292,17 +256,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 511cfe42fa332d14ba6890a16bcc932f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 1
-  range: -0.6
-  colliderDistance: 2.7
-  damage: 3
+  attackCooldown: 2
+  range: -0.5
+  colliderDistance: 2.8
+  damage: 2
   boxCollider: {fileID: 5425804776234119323}
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
   m_detectionRange: 10
   m_speed: 4
-  m_body2d: {fileID: 2164514136086885887}
+  speed: 4
+  m_body2d: {fileID: 0}
 --- !u!82 &4265514907632937186
 AudioSource:
   m_ObjectHideFlags: 0

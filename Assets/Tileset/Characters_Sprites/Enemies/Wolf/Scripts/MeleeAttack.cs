@@ -16,6 +16,7 @@ public class MeleeAttack : MonoBehaviour
 
     private float cooldownTimer = Mathf.Infinity;
 
+    public float speed = 4f;
 
     private Animator anim;
     private PlayerHealth playerHealth;
@@ -65,11 +66,24 @@ public class MeleeAttack : MonoBehaviour
             if (PlayerInSight())
             {
                 anim.SetBool("moving", false);
+                
                 if (cooldownTimer >= attackCooldown)
                 {
                     cooldownTimer = 0;
+                    m_speed = 0f;
                     anim.SetTrigger("attack");
                 }
+            }
+
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                // Still attacking
+                m_speed = 0f;
+            }
+            else
+            {
+                // Attack finished, reset speed
+                m_speed = speed;
             }
         }
         else
@@ -94,6 +108,7 @@ public class MeleeAttack : MonoBehaviour
         return hit.collider != null;
 
     }
+
 
 
     private void OnDrawGizmos()

@@ -262,7 +262,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.062067986, y: 1.4200023}
+  m_Offset: {x: 0.062067986, y: 1.4582202}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -273,7 +273,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4620914, y: 2.7158682}
+  m_Size: {x: 1.4620914, y: 2.6394324}
   m_EdgeRadius: 0
 --- !u!61 &1238719911020285332
 BoxCollider2D:
@@ -307,7 +307,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0610345, y: 1.4144628}
+  m_Offset: {x: 0.0610345, y: 0.23695636}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -318,7 +318,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4566499, y: 2.7299256}
+  m_Size: {x: 1.4566499, y: 0.19708252}
   m_EdgeRadius: 0
 --- !u!114 &5329015338736923223
 MonoBehaviour:
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875bfddadc9e38d41be13b4a78f77ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 20
   DieAnimation: {fileID: 2447680222590911777}
   Blood: {fileID: 1183176227867747839, guid: 27017131dae3d2947b21648ae258a703, type: 3}
 --- !u!114 &2244666966055191645
@@ -357,6 +357,7 @@ MonoBehaviour:
     m_Bits: 128
   m_detectionRange: 10
   m_speed: 4
+  speed: 4
   m_body2d: {fileID: 1791350807566977254}
 --- !u!82 &2250840715577478820
 AudioSource:
