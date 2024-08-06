@@ -61,11 +61,22 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        GetComponentInParent<MeleeAttack>().enabled = false;
-        GetComponentInParent<MeleeAttack>().m_body2d.constraints = RigidbodyConstraints2D.FreezePositionX;
-        DieAnimation.SetTrigger("die");
+        if (gameObject.CompareTag("Enemy"))
+        {
+            GetComponentInParent<MeleeAttack>().enabled = false;
+            GetComponentInParent<MeleeAttack>().m_body2d.constraints = RigidbodyConstraints2D.FreezePositionX;
+            DieAnimation.SetTrigger("die");
 
-        StartCoroutine(Delay());
+            StartCoroutine(Delay());
+        }
+        else if (gameObject.CompareTag("Player"))
+        {
+            GetComponentInParent<PlayerMovement>().enabled = false;
+            GetComponentInParent<CharacterController2D>().enabled = false;
+            GetComponentInParent<CombatAttack>().enabled = false;
+
+            DieAnimation.SetTrigger("die");
+        }
     }
 
     private IEnumerator Delay()
