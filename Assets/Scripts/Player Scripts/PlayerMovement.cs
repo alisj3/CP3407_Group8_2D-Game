@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private Rigidbody2D rb;
 
+    public AudioSource audioSource;
+    public AudioClip runningClip;
+
     public CharacterController2D contoller;
 
     Animator animator;
