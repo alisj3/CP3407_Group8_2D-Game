@@ -9,7 +9,8 @@ public class PlayerHealth : MonoBehaviour
 
     private int MAX_HEALTH = 100;
     public GameObject Blood;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
+    public AudioClip dieSound;
 
     private void Awake()
     {
@@ -71,6 +72,9 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (gameObject.CompareTag("Player"))
         {
+            audioSource.clip = dieSound;
+            audioSource.Play();
+
             GetComponentInParent<PlayerMovement>().enabled = false;
             GetComponentInParent<CharacterController2D>().enabled = false;
             GetComponentInParent<CombatAttack>().enabled = false;
