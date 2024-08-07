@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int health = 100;
     [SerializeField] Animator DieAnimation;
 
-    private int MAX_HEALTH = 100;
+    private int MAX_HEALTH = 10;
     public GameObject Blood;
     public AudioSource audioSource;
     public AudioClip dieSound;
@@ -17,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
         DieAnimation = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
     }
+
+    [SerializeField] private UnityEngine.UI.Image _healthBarForegroundImage;
 
     // Update is called once per frame
     void Update()
@@ -35,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
         DieAnimation.SetTrigger("hurt");
         Instantiate(Blood, transform.position, Quaternion.identity);
         audioSource.Play();
+
 
         if (health < 0)
         {
