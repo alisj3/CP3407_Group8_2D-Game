@@ -9,7 +9,8 @@ public class PlayerHealth : MonoBehaviour
 
     private int MAX_HEALTH = 100;
     public GameObject Blood;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
+    public AudioClip dieSound;
 
     private void Awake()
     {
@@ -61,11 +62,25 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        GetComponentInParent<MeleeAttack>().enabled = false;
-        GetComponentInParent<MeleeAttack>().m_body2d.constraints = RigidbodyConstraints2D.FreezePositionX;
-        DieAnimation.SetTrigger("die");
+        if (gameObject.CompareTag("Enemy"))
+        {
+            GetComponentInParent<MeleeAttack>().enabled = false;
+            GetComponentInParent<MeleeAttack>().m_body2d.constraints = RigidbodyConstraints2D.FreezePositionX;
+            DieAnimation.SetTrigger("die");
 
-        StartCoroutine(Delay());
+            StartCoroutine(Delay());
+        }
+        else if (gameObject.CompareTag("Player"))
+        {
+            audioSource.clip = dieSound;
+            audioSource.Play();
+
+            GetComponentInParent<PlayerMovement>().enabled = false;
+            GetComponentInParent<CharacterController2D>().enabled = false;
+            GetComponentInParent<CombatAttack>().enabled = false;
+
+            DieAnimation.SetTrigger("die");
+        }
     }
 
     private IEnumerator Delay()
